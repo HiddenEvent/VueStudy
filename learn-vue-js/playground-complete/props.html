@@ -1,40 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <div id="app">
-    <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
-    <app-header v-bind:propsdata="message"></app-header>
-    <app-content v-bind:propsdata="num"></app-content>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
+      <app-header v-bind:propsdata="message"></app-header>
+      <app-content v-bind:propsdata="num"></app-content>
+      <app-last v-bind:last="last"></app-last>
+    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script>
-    var appHeader = {
-      template: '<h1>{{ propsdata }}</h1>',
-      props: ['propsdata']
-    }
-    var appContent = {
-      template: '<div>{{ propsdata }}</div>',
-      props: ['propsdata']
-    }
-
-    new Vue({
-      el: '#app',
-      components: {
-        'app-header': appHeader,
-        'app-content': appContent
-      },
-      data: {
-        message: 'hi',
-        num: 10
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      class CommonVue {
+        constructor(el, components, data) {
+          this.el = el;
+          this.components = components;
+          this.data = data;
+          new Vue({
+            el: this.el,
+            components: this.components,
+            data: this.data,
+          });
+        }
       }
-    })
-  </script>
-</body>
+
+      var appHeader = {
+        template: '<h1>{{ propsdata }}</h1>',
+        props: ['propsdata'],
+      };
+      var appContent = {
+        template: '<div>{{ propsdata }}</div>',
+        props: ['propsdata'],
+      };
+      var appLast = {
+        template: '<div>{{last}}</div>',
+        props: ['last'],
+      };
+
+      const el = '#app';
+      const components = {
+        'app-header': appHeader,
+        'app-content': appContent,
+        'app-last': appLast,
+      };
+      const data = {
+        message: 'hi',
+        num: 10,
+        last: true,
+      };
+      new CommonVue(el, components, data);
+
+      // new Vue({
+      //   el,
+      //   components,
+      //   data,
+      // });
+    </script>
+  </body>
 </html>
