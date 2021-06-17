@@ -1,14 +1,12 @@
-<template lang="ko">
+<template lang="">
   <div>
-    {{str}}
+    header
   </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      str: 'hi',
-    };
+  methods: {
+    addNum: function() {},
   },
 };
 </script>
