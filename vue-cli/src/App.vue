@@ -2,10 +2,12 @@
   <div>
     <app-header v-bind:propsdata="str"
     v-on:renew="renewStr"></app-header>
+   <app-login></app-login>
   </div>
 </template>
 <script>
-import AppHeader from './components/AppHeader.vue';
+import AppHeader from './components/AppHeader2.vue';
+import Login from './components/Login.vue';
 
 export default {
   data() {
@@ -15,6 +17,7 @@ export default {
   },
   components: {
     'app-header': AppHeader,
+    'app-login': Login,
   },
   methods: {
     renewStr() {
