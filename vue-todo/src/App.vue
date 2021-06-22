@@ -13,9 +13,6 @@ import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
 import TodoFooter from "./components/TodoFooter";
 
-var my_cmp = {
-  tmplate: '<div>my component</div>'
-}
 
 export default {
   components: {
@@ -28,5 +25,19 @@ export default {
 </script>
 
 <style>
+body {
+  text-align: center;
+  background-color: #F6F6F6;
+}
+input {
+  border-style: groove;
+  width: 200px;
+}
+button {
+  border-style: groove;
+}
 
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+}
 </style>
