@@ -14,11 +14,13 @@ export default {
   },
   methods: {
     addTodo: function (){
-      console.log(this.newTodoItem)
-      // 저장하는 로직 ( 로컬 스토리지)
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      // 초기화
-      this.clearInput()
+      if(this.newTodoItem){
+        let obj = {completed: false, item: this.newTodoItem};
+        // 저장하는 로직 ( 로컬 스토리지)
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
+        // 초기화
+        this.clearInput()
+      }
     },
     clearInput: function () {
       this.newTodoItem = '';
