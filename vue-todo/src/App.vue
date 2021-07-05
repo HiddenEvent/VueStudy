@@ -1,12 +1,11 @@
 <template>
   <div id="app">
     <TodoHeader/>
-    <TodoInput/>
+    <TodoInput v-on:addTodoItem="addOneItem"/>
     <TodoList v-bind:propsdata="todoItems"/>
     <TodoFooter/>
   </div>
 </template>
-
 <script>
 import TodoHeader from "./components/TodoHeader";
 import TodoInput from "./components/TodoInput";
@@ -18,6 +17,13 @@ export default {
   data() {
     return {
       todoItems: []
+    }
+  },
+  methods: {
+    addOneItem: function (){
+      let obj = {completed: false, item: this.newTodoItem};
+      // 저장하는 로직 ( 로컬 스토리지)
+      localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
     }
   },
   created() {
