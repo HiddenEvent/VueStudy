@@ -5,7 +5,7 @@
     <TodoList v-bind:propsdata="todoItems"
               v-on:removeItem="removeOneItem"
               v-on:toggleItem="toggleOneItem"/>
-    <TodoFooter/>
+    <TodoFooter v-on:clearAll="clearAllItems"/>
   </div>
 </template>
 <script>
@@ -38,8 +38,11 @@ export default {
       /* 로컬 storege 갱신*/
       localStorage.removeItem(todoItem.item)
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    },
+    clearAllItems(){
+      localStorage.clear()
+      this.todoItems = []
     }
-
   },
   created() {
     if (localStorage.length > 0) {
