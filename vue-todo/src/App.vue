@@ -2,7 +2,9 @@
   <div id="app">
     <TodoHeader/>
     <TodoInput v-on:addTodoItem="addOneItem"/>
-    <TodoList v-bind:propsdata="todoItems"/>
+    <TodoList v-bind:propsdata="todoItems"
+              v-on:removeItem="removeOneItem"
+              v-on:toggleItem="toggleOneItem"/>
     <TodoFooter/>
   </div>
 </template>
@@ -25,7 +27,19 @@ export default {
       // 저장하는 로직 ( 로컬 스토리지)
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
+    },
+    removeOneItem(todoItem, index) {
+      localStorage.removeItem(todoItem.item)
+      this.todoItems.splice(index, 1);
+    },
+    toggleOneItem(todoItem, index) {
+      todoItem.completed = !todoItem.completed;
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      /* 로컬 storege 갱신*/
+      localStorage.removeItem(todoItem.item)
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
     }
+
   },
   created() {
     if (localStorage.length > 0) {
