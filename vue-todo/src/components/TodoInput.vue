@@ -13,7 +13,7 @@ export default {
     }
   },
   methods: {
-    addTodo: function (){
+    addTodo(){
       if(this.newTodoItem){
         this.$emit('addTodoItem', this.newTodoItem)
         // 초기화

@@ -20,10 +20,11 @@ export default {
     }
   },
   methods: {
-    addOneItem: function (){
-      let obj = {completed: false, item: this.newTodoItem};
+    addOneItem(todoItem) {
+      let obj = {completed: false, item: todoItem};
       // 저장하는 로직 ( 로컬 스토리지)
-      localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
     }
   },
   created() {
@@ -44,7 +45,6 @@ export default {
 }
 
 
-
 </script>
 
 <style>
@@ -52,10 +52,12 @@ body {
   text-align: center;
   background-color: #F6F6F6;
 }
+
 input {
   border-style: groove;
   width: 200px;
 }
+
 button {
   border-style: groove;
 }

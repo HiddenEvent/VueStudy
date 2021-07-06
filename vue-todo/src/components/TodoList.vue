@@ -18,7 +18,6 @@ export default {
   props: ['propsdata'],
   methods: {
     removeTodo(todoItem, index) {
-      console.log(todoItem, index)
       localStorage.removeItem(todoItem)
       this.todoItems.splice(index, 1);
     },
